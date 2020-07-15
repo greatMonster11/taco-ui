@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core'
     styleUrls: ['login.component.css']
 })
 
-export class LoinComponent implements OnInit {
+export class LoginComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {}

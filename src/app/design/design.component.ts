@@ -1,12 +1,12 @@
-import { Component, OnInit, Injectable, Input} from "@angular/core"
-import { HttpClient, HttpHeaders} from "@angular/common/http"
-import { Router } from "@angular/router"
-import { CartService } from "../cart/cart-service"
+import {Component, OnInit, Injectable, Input} from "@angular/core"
+import {HttpClient, HttpHeaders} from "@angular/common/http"
+import {Router} from "@angular/router"
+import {CartService} from "../cart/cart-service"
 
 @Component({
     selector: 'taco-design',
     templateUrl: 'design.component.html',
-    stleUrls: ['design.component.css']
+    styleUrls: ['./design.component.css']
 })
 
 @Injectable()
@@ -23,14 +23,15 @@ export class DesignComponent implements OnInit {
     cheeses = [];
     sauces = [];
 
-    constructor(private httpClient: HttpClient, private router: Router, private cart: CartService) { this.httpClient.get('http://localhost:8080/ingredients') .subscribe(data => {
-                this.allIngredients = data
-                this.wraps = this.allIngredients.filter(w => w.type === 'WRAP')
-                this.proteins = this.allIngredients.filter(p => p.type === 'PROTEIN')
-                this.veggies = this.allIngredients.filter(v => v.type === 'VEGGIES')
-                this.cheeses = this.allIngredients.filter(c => c.type === 'CHEESES')
-                this.sauces = this.allIngredients.filter(s => s.type === 'SAUCES')
-            })
+    constructor(private httpClient: HttpClient, private router: Router, private cart: CartService) {
+        this.httpClient.get('http://localhost:8080/ingredients').subscribe(data => {
+            this.allIngredients = data
+            this.wraps = this.allIngredients.filter(w => w.type === 'WRAP')
+            this.proteins = this.allIngredients.filter(p => p.type === 'PROTEIN')
+            this.veggies = this.allIngredients.filter(v => v.type === 'VEGGIES')
+            this.cheeses = this.allIngredients.filter(c => c.type === 'CHEESES')
+            this.sauces = this.allIngredients.filter(s => s.type === 'SAUCES')
+        })
     }
     // end OnInit
 
@@ -48,7 +49,9 @@ export class DesignComponent implements OnInit {
         this.httpClient.post(
             'http://localhost:8080/design',
             this.model, {
-                headers: new HttpHeaders().set('Content-type', 'application/json'),
-            }).subscribe(taco => this.cart.addToCart(taco))
+            headers: new HttpHeaders().set('Content-type', 'application/json'),
+        }).subscribe(taco => this.cart.addToCart(taco))
     }
+
+    ngOnInit() {}
 }

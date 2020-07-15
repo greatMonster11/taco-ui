@@ -1,4 +1,4 @@
-import { CartItem } from './cart-item'
+import {CartItem} from './cart-item'
 
 export class CartService {
     items$: CartItem[] = []
@@ -23,6 +23,6 @@ export class CartService {
     }
 
     emptyCart() {
-        this.item$ = []
+        this.items$ = []
     }
 }

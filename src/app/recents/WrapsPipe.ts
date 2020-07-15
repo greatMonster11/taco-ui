@@ -4,7 +4,7 @@ import {Pipe, PipeTransform} from '@angular/core'
     name: 'wraps'
 })
 
-export class WrapPipe implements PipeTransform {
+export class WrapsPipe implements PipeTransform {
     transform(ingredients: any, ...args: any): any {
         const wraps = [];
         for (const ingredient of ingredients) {
